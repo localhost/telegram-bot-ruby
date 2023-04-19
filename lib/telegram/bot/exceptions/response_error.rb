@@ -25,7 +25,7 @@ module Telegram
         def data
           @data ||= begin
             JSON.parse(response.body)
-          rescue JSON::ParserError
+          rescue TypeError, JSON::ParserError
             { error_code: response.status, uri: response.env.url.to_s }
           end
         end
